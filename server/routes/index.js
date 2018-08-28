@@ -7,7 +7,7 @@ const {sqlString} = require('../sql.js')
 const config = {
   user: 'mes_fis_admin',
   password: 'mes$fisadmin',
-  server: 'AMK-ODS-SQL01', 
+  server: '10.3.5.46', 
   database: 'FISREPORT',
   connectionTimeout: 300000,
   requestTimeout: 300000,

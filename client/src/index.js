@@ -147,7 +147,7 @@ class Commonality extends React.Component{
                     <div className="row">
                         {loading}
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                         <div id='lotFailRateChart'>
                             <span>Lot Fail Rate Chart</span>
                             <a className='reset'
@@ -170,7 +170,7 @@ class Commonality extends React.Component{
                         </div>
 
 
-                    </div>
+                    </div> */}
                 </div>
             </div>   
         </div>

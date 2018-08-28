@@ -15,7 +15,7 @@ export const plotChart = (setting)=>{
         console.log(response.status);
         return response.json()})
     .then(data => {
-        console.log(data);
+        console.log(data)
         let lotFailRateChart = dc.barChart('#lotFailRateChart');
         let totalDefectChart = dc.pieChart('#totalDefectChart');
         let iR1MaterialChart = dc.barChart('#IR1MaterialChart');
