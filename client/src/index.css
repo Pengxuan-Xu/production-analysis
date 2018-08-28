@@ -7,3 +7,7 @@ body {
   text-anchor: end !important;
   transform: rotate(-45deg);
 }
+
+.row {
+  margin: 10px 0px;
+}
