@@ -233,10 +233,11 @@ export const plotChart = (setting,chart)=>{
             //time chart
             let timeDimension = testdata.dimension((d)=>{
                 let time=new Date(Date.parse(d.LAST_UPDATE));
-                // time.setFullYear(2018,0,1);
-                return time;
+                let hour=time.getHours(time);
+                return hour
             }
             );
+           
             let timeGroup = timeDimension.group();
             timeGroup.reduce(
                  //add
@@ -266,25 +267,29 @@ export const plotChart = (setting,chart)=>{
                     }
                 });
 
+                console.log(timeGroup.all());
+
                 timeChart
                 .renderArea(true)
+                .mouseZoomable(true)
+                .renderHorizontalGridLines(true)
                 .width(1000)
                 .height(200)
                 .transitionDuration(1000)
                 .margins({top: 30, right: 50, bottom: 25, left: 40})
                 .dimension(timeDimension)
-                .mouseZoomable(true)
-                .x(d3.scaleTime())
-                .round(d3.timeMonth.round)
-                .xUnits(d3.timeMonths)
+                .x(d3.scaleLinear().domain([0,24]))
             
                 .elasticY(true)
-                .renderHorizontalGridLines(true)
+ 
                 .legend(dc.legend().x(800).y(10).itemHeight(13).gap(5))
                 .brushOn(false)
-                .group(timeGroup, 'Total Qty')
+                .group(timeGroup,"Fail Qty")
                 .valueAccessor(function (d) {
-                    return d.binFail;
+                    return d.value.binFail;
+                })
+                .stack(timeGroup, 'Total Qty', function (d) {
+                    return d.value.total;
                 })
         
     }).then(()=>{
