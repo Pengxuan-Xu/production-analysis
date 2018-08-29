@@ -2,10 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {plotChart} from './components/chart.js'
+import {ChartDiv} from './components/chartdiv.js'
 
 var dc =require('dc');
 // var crossfilter = require('crossfilter2');
 // var d3 = require('d3')
+
+// MTBXMG18700106
+// MTBXMG18700111
+// MTBXMG18700230
+// MTBXMG18700115
+// MTBXMG18700109
 
 class Commonality extends React.Component{
     constructor(props){
@@ -53,9 +60,10 @@ class Commonality extends React.Component{
         })
     }
 
-
     render (){
         let loading = this.state.loading&&<p>Loading Data from Server...</p>;
+  
+
         return (
         <div className = "container">
 
@@ -147,36 +155,33 @@ class Commonality extends React.Component{
                     <div className="row">
                         {loading}
                     </div>
-                    {/* <div className="row">
-                        <div id='lotFailRateChart'>
-                            <span>Lot Fail Rate Chart</span>
-                            <a className='reset'
-                                href='javascript:lotFailRateChart.filterAll();dc.redrawAll();'
-                                style={{'visibility': 'hidden'}}>reset</a>
-                        </div>
-                        
-                        <div id='totalDefectChart'>
-                            <span>Total Defect Rate</span>
-                            <a className='reset'
-                                href='javascript:totalDefectChart.filterAll();dc.redrawAll();'
-                                style={{'visibility': 'hidden'}}>reset</a>
-                        </div>
-
-                        <div id='IR1MaterialChart'>
-                            <span>IR1 Material Chart</span>
-                            <a className='reset'
-                                href='javascript:IR1MaterialChart.filterAll();dc.redrawAll();'
-                                style={{'visibility': 'hidden'}}>reset</a>
-                        </div>
-
-
-                    </div> */}
                 </div>
+                    
             </div>   
         </div>
         )
     }
 }
 
-ReactDOM.render(<Commonality />, document.getElementById('root'));
+class App extends React.Component{
+    
+    resetFilter(){
+        dc.filterAll();
+        dc.renderAll()
+    }
+
+    render(){
+    
+        return(
+            <div>
+                <Commonality />
+                <ChartDiv resetFilter={()=>this.resetFilter()}/>
+            </div>
+        )
+    }
+        
+    
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
 
